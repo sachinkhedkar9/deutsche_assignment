@@ -1,0 +1,103 @@
+<doctype !HTML>
+<html>
+<head>
+    <!--
+    This is the library that provides websocket streaming pub/sub
+    The dev serverver is serving the html and javascript, but it also provides updating fx data on /fx/prices.
+     -->
+    <script src="stomp.js"></script>
+    <script src="sparkline.js"></script>
+</head>
+<body>
+
+<!-- This is a description of what you should do for this task.  You can remove it for your answer -->
+<section class="content">
+    <h1>Updating Table</h1>
+
+    <h2>Your Task</h2>
+
+    <h3>1. A Sorted table</h3>
+
+    <p>
+        Show those currency pairs in a table with rows for each currency pair, which
+        includes columns for at least the name, the current best bid price, current best ask price,
+        the amount that the best bid last changed, and the amount the best ask price last changed.
+        This data can be read out of the price updates that are sent via stomp.   There are a limited number
+        of currency pairs, and multiple updates will be sent for each one.  You should request the topic
+        <code>/fx/prices</code>, to receive update messages with a body that looks like this:
+    </p>
+
+<pre></pre>
+
+  <table>
+      <thead>
+          <tr>
+              <td>Name</td>
+              <td>usdjpy</td>
+          </tr>
+      </thead>
+      <tbody id="sortableTable">
+
+      </tbody>
+  </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h3>2. Sparklines</h3>
+
+    <p>
+        The last column should be a live updating sparkline which shows the midprice over the last 30 seconds.  The
+        x axis should be time. The midprice can be calculated by adding the bestBid and bestAsk fields together and
+        dividing by 2.
+    </p>
+
+    <p>
+        You can get a new element with a spark line drawn in it like so:
+
+    <pre>
+    const sparks = document.createElement('span')
+    Sparkline.draw(sparks, [1, 2, 3, 4])
+    </pre>
+
+        Or you can get a sparkline that you can repeatedly update with rendered values:
+
+    <pre>
+    const sparkElement = document.createElement('span')
+    const sparkline = new Sparkline(sparkElement)
+    sparkline.draw([1,2,3,4,5])
+    /** sometime later... */
+    sparkline.draw([2,3,4,5,1])
+    </pre>
+
+        Here's an example sparkline: <span id="example-sparkline"></span>
+</pre>
+
+    </p>
+
+</section>
+
+<!-- Code you write in index.js and anything it depends on will be bundled into bundle.js and
+     is included here -->
+<script src="bundle.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
